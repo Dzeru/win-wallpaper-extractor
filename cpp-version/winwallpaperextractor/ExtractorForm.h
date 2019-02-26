@@ -44,6 +44,9 @@ namespace winwallpaperextractor {
 	private: System::Windows::Forms::TextBox^  textBoxDirTo;
 	private: System::Windows::Forms::Button^  buttonRun;
 	private: System::Windows::Forms::RichTextBox^  richTextBoxStatus;
+	private: System::Windows::Forms::Label^  labelCopyrightApp;
+	private: System::Windows::Forms::Label^  labelCopyrightAuthor;
+	private: System::Windows::Forms::Label^  labelCopyrightLicense;
 
 	private:
 		/// <summary>
@@ -64,6 +67,9 @@ namespace winwallpaperextractor {
 			this->textBoxDirTo = (gcnew System::Windows::Forms::TextBox());
 			this->buttonRun = (gcnew System::Windows::Forms::Button());
 			this->richTextBoxStatus = (gcnew System::Windows::Forms::RichTextBox());
+			this->labelCopyrightApp = (gcnew System::Windows::Forms::Label());
+			this->labelCopyrightAuthor = (gcnew System::Windows::Forms::Label());
+			this->labelCopyrightLicense = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// labelUsername
@@ -125,11 +131,45 @@ namespace winwallpaperextractor {
 			this->richTextBoxStatus->TabIndex = 5;
 			this->richTextBoxStatus->Text = L"";
 			// 
+			// labelCopyrightApp
+			// 
+			this->labelCopyrightApp->AutoSize = true;
+			this->labelCopyrightApp->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->labelCopyrightApp->Location = System::Drawing::Point(28, 419);
+			this->labelCopyrightApp->Name = L"labelCopyrightApp";
+			this->labelCopyrightApp->Size = System::Drawing::Size(376, 23);
+			this->labelCopyrightApp->TabIndex = 6;
+			this->labelCopyrightApp->Text = L"WallEx - Windows 10 Wallpaper Extractor";
+			// 
+			// labelCopyrightAuthor
+			// 
+			this->labelCopyrightAuthor->AutoSize = true;
+			this->labelCopyrightAuthor->Font = (gcnew System::Drawing::Font(L"Arial", 10));
+			this->labelCopyrightAuthor->Location = System::Drawing::Point(28, 452);
+			this->labelCopyrightAuthor->Name = L"labelCopyrightAuthor";
+			this->labelCopyrightAuthor->Size = System::Drawing::Size(200, 23);
+			this->labelCopyrightAuthor->TabIndex = 7;
+			this->labelCopyrightAuthor->Text = L"Author is Dzeru, 2019";
+			// 
+			// labelCopyrightLicense
+			// 
+			this->labelCopyrightLicense->AutoSize = true;
+			this->labelCopyrightLicense->Font = (gcnew System::Drawing::Font(L"Arial", 10));
+			this->labelCopyrightLicense->Location = System::Drawing::Point(28, 486);
+			this->labelCopyrightLicense->Name = L"labelCopyrightLicense";
+			this->labelCopyrightLicense->Size = System::Drawing::Size(342, 23);
+			this->labelCopyrightLicense->TabIndex = 8;
+			this->labelCopyrightLicense->Text = L"Use GNU General Public License v3.0";
+			// 
 			// ExtractorForm
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->BackColor = System::Drawing::Color::Azure;
-			this->ClientSize = System::Drawing::Size(621, 436);
+			this->ClientSize = System::Drawing::Size(621, 527);
+			this->Controls->Add(this->labelCopyrightLicense);
+			this->Controls->Add(this->labelCopyrightAuthor);
+			this->Controls->Add(this->labelCopyrightApp);
 			this->Controls->Add(this->richTextBoxStatus);
 			this->Controls->Add(this->buttonRun);
 			this->Controls->Add(this->textBoxDirTo);
@@ -139,16 +179,21 @@ namespace winwallpaperextractor {
 			this->Font = (gcnew System::Drawing::Font(L"Arial", 14, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-			this->Margin = System::Windows::Forms::Padding(5, 5, 5, 5);
+			this->Margin = System::Windows::Forms::Padding(5);
 			this->Name = L"ExtractorForm";
 			this->Text = L"WallEx";
+			this->Load += gcnew System::EventHandler(this, &ExtractorForm::ExtractorForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 
+private: String^ initialStatusText = "STATUS\n";
+
 #pragma endregion
 	private: System::Void buttonRun_Click(System::Object^  sender, System::EventArgs^  e) {
+		this->richTextBoxStatus->Text = initialStatusText;
+		
 		vector<string> args;
 		args.push_back(msclr::interop::marshal_as<string>(this->textBoxUsername->Text));
 		args.push_back(msclr::interop::marshal_as<string>(this->textBoxDirTo->Text));
@@ -164,5 +209,8 @@ namespace winwallpaperextractor {
 			this->richTextBoxStatus->AppendText("CRITICAL ERROR!");
 		}
 	}
+private: System::Void ExtractorForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	this->richTextBoxStatus->Text = initialStatusText;
+}
 };
 }
