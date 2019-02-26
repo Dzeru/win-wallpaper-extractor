@@ -12,14 +12,16 @@ public class GUI
 	private final static Dimension TEXT_FIELD_DIMENSION = new Dimension(220, 40);
 	private final static Dimension RUN_DIMENSION = new Dimension(150, 150);
 	private final static Dimension STATUS_DIMENSION = new Dimension(220, 150);
+	private final static Dimension COPYRIGHT_DIMENSION = new Dimension(400, 60);
 
 	private final static String initialStatusText = "STATUS:\n";
+	private final static String copyright = "<html>WallEx - Windows 10 Wallpaper Extractor<br>Author is Dzeru, 2019<br>Use GNU General Public License v3.0</html>";
 
 	public static void createGUI()
 	{
-		JFrame frame = new JFrame("Win10 Wallpaper Extractor");
+		JFrame frame = new JFrame("WallEx");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 400);
+		frame.setSize(500, 440);
 		frame.setResizable(false);
 
 		Font usualFont = new Font("Arial", Font.PLAIN, 22);
@@ -28,6 +30,11 @@ public class GUI
 
 		JPanel manualLocationPanel = new JPanel();
 		manualLocationPanel.setLayout(null);
+
+		JLabel copyrightLabel = new JLabel(copyright);
+		copyrightLabel.setSize(COPYRIGHT_DIMENSION);
+		copyrightLabel.setLocation(30, 320);
+		copyrightLabel.setFont(smallFont);
 
 		JLabel usernameLabel = new JLabel("Username");
 		usernameLabel.setSize(LABEL_DIMENSION);
@@ -90,6 +97,7 @@ public class GUI
 			}
 		});
 
+		manualLocationPanel.add(copyrightLabel);
 		manualLocationPanel.add(usernameLabel);
 		manualLocationPanel.add(usernameTextField);
 		manualLocationPanel.add(dirToLabel);
