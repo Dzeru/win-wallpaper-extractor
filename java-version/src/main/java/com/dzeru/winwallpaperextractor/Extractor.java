@@ -66,8 +66,11 @@ public class Extractor
 
 		for(File f : file.listFiles())
 		{
-			Files.copy(f.toPath(), Paths.get(dirToPath + f.getName() + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
-			status.append("Copy: " + dirToPath + f.getName() + ".jpg\n");
+			if(f.length() > 8 * 200)
+			{
+				Files.copy(f.toPath(), Paths.get(dirToPath + f.getName() + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
+				status.append("Copy: " + dirToPath + f.getName() + ".jpg\n");
+			}
 		}
 
 		status.append("DONE.");
