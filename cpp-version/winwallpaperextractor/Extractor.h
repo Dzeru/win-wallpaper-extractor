@@ -29,10 +29,23 @@ public:
 			return status;
 		}
 
-		//Default folder for wallpapers etc.
-		std::string defaultFolderForWallpapers = "C:/Users/" + args[0] + "/AppData/Local/Packages/Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy/LocalState/Assets/";
+		bool hasUser = false;
+		std::string usersDir = "C:/Users/";
 
-		if (CreateDirectory(defaultFolderForWallpapers.c_str(), NULL))
+		//Default folder for wallpapers etc.
+		std::string defaultFolderForWallpapers = usersDir + args[0] + "/AppData/Local/Packages/Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy/LocalState/Assets/";
+
+		//Check the username input
+		for (const auto &entry : fs::directory_iterator(usersDir))
+		{
+			std::string userName = entry.path().string().substr(usersDir.size());
+			if (args[0] == userName)
+			{
+				hasUser = true;
+			}
+		}
+
+		if (!hasUser)
 		{
 			status += "ERROR: Default folder for wallpapers does not exist or is corrupted.\nMay be you write wrong username. Try again.";
 			return status;
