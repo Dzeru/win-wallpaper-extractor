@@ -5,7 +5,9 @@
 #include <cstdlib>
 #include <filesystem>
 #include <Windows.h>
+#include <chrono>
 
+namespace ch = std::chrono;
 namespace fs = std::filesystem;
 
 using namespace System;
@@ -52,7 +54,7 @@ public:
 		}
 
 		//There files will be copied, if user does not write any folder
-		std::string defaultDirPath = "C:/Users/" + args[0] + "/Pictures/defaultWallpapersDir_" + std::to_string(std::rand())  + "/";
+		std::string defaultDirPath = "C:/Users/" + args[0] + "/Pictures/defaultWallpapersDir_" + std::to_string(ch::duration_cast<ch::milliseconds>(ch::system_clock::now().time_since_epoch()).count())  + "/";
 
 		//There files will be copied
 		std::string dirToPath;
