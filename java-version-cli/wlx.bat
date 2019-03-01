@@ -1,0 +1,2 @@
+javac WallExCLI.java
+java WallExCLI USERNAME FOLDER_TO_SAVE
