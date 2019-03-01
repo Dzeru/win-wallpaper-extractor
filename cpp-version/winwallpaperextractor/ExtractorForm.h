@@ -165,7 +165,7 @@ namespace winwallpaperextractor {
 			// ExtractorForm
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
-			this->BackColor = System::Drawing::Color::Azure;
+			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(621, 527);
 			this->Controls->Add(this->labelCopyrightLicense);
 			this->Controls->Add(this->labelCopyrightAuthor);
@@ -181,6 +181,7 @@ namespace winwallpaperextractor {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Margin = System::Windows::Forms::Padding(5);
 			this->Name = L"ExtractorForm";
+			this->ShowIcon = false;
 			this->Text = L"WallEx";
 			this->Load += gcnew System::EventHandler(this, &ExtractorForm::ExtractorForm_Load);
 			this->ResumeLayout(false);

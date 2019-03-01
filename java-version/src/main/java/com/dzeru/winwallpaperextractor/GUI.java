@@ -29,6 +29,7 @@ public class GUI
 		Font smallFont = new Font("Arial", Font.PLAIN, 16);
 
 		JPanel manualLocationPanel = new JPanel();
+		manualLocationPanel.setBackground(Color.WHITE);
 		manualLocationPanel.setLayout(null);
 
 		JLabel copyrightLabel = new JLabel(copyright);
@@ -71,6 +72,7 @@ public class GUI
 		scrollStatusArea.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		JButton runButton = new JButton("Run");
+		runButton.setBackground(new Color(181, 230, 29));
 		runButton.setSize(RUN_DIMENSION);
 		runButton.setLocation(30, 150);
 		runButton.setFont(bigFont);
