@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <filesystem>
 #include <Windows.h>
+#include <Lmcons.h>
 #include <chrono>
 
 namespace ch = std::chrono;
@@ -18,6 +19,14 @@ class Extractor
 public:
 	Extractor() {};
 	~Extractor() {};
+
+	char* getCurrentUser()
+	{
+		char buffer[UNLEN + 1];
+		DWORD len = UNLEN + 1;
+		GetUserName(buffer, &len);
+		return buffer;
+	}
 
 	String^ extractWallpapers(std::vector<std::string> args)
 	{

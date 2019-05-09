@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <iostream>
 
 namespace winwallpaperextractor {
 
@@ -212,6 +213,9 @@ private: String^ initialStatusText = "STATUS\n";
 	}
 private: System::Void ExtractorForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	this->richTextBoxStatus->Text = initialStatusText;
+
+	Extractor* extractor = new Extractor();
+	this->textBoxUsername->Text = gcnew String(extractor->getCurrentUser());
 }
 };
 }
